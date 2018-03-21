@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Xamarin.Forms;
 using XMedia.Model;
@@ -8,9 +10,9 @@ namespace XMedia
 {
     public partial class MainPage : ContentPage
 	{
-        private List<MediaFile> mediaFiles;
+        private ObservableCollection<Grouping<DateTime, MediaFile>> mediaFiles;
 
-        public List<MediaFile> MediaFiles
+        public ObservableCollection<Grouping<DateTime, MediaFile>> MediaFiles
         {
             get => mediaFiles;
             set => mediaFiles = value;
@@ -26,7 +28,18 @@ namespace XMedia
         {
             base.OnAppearing();
 
-            MediaFiles = DependencyService.Get<IMediaFileSearchService>().GetMediaFiles().ToList();
+            var mediaFiles = DependencyService.Get<IMediaFileSearchService>().GetMediaFiles();
+            
+            MediaFiles = new ObservableCollection<Grouping<DateTime, MediaFile>>(mediaFiles.GroupBy(x => x.DateAdded)
+                                                    .Select(x => new Grouping<DateTime, MediaFile>(x.Key, x)));
+
+            /*
+            MediaFiles = new ObservableCollection<Grouping<DateTime, MediaFile>>(mediaFiles.GroupBy(x => x.DateAdded)
+                                   .Select(x => new Grouping<DateTime, MediaFile>(x)));
+                                   //.Where(x => x.Count > 0));
+                                   */
+                                   
+                                                                      
             OnPropertyChanged(nameof(MediaFiles));
         }
     }

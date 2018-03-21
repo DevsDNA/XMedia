@@ -3,31 +3,30 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:XMedia"
              xmlns:converter="clr-namespace:XMedia.Converter" 
+             xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
              x:Class="XMedia.MainPage">
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <converter:ByteImageSourceValueConverter x:Key="ByteImageConverter"/>
+            <converter:DateTimeLiteralValueConverter x:Key="DateTimeLiteral"/>
         </ResourceDictionary>
     </ContentPage.Resources>
     
-    <ListView
-        ItemsSource="{Binding MediaFiles}"
-        HasUnevenRows="True">
-
-        <ListView.ItemTemplate>
+    <flv:FlowListView FlowColumnCount="3" RowHeight="100"
+        FlowItemsSource="{Binding MediaFiles}"
+        HasUnevenRows="False"
+        IsGroupingEnabled="True"
+        FlowColumnExpand="None"
+        SeparatorVisibility="None"
+        FlowGroupDisplayBinding="{Binding Key , Converter={StaticResource DateTimeLiteral}}">
+        
+        <flv:FlowListView.FlowColumnTemplate>
             <DataTemplate>
-                <ViewCell>
-                    <StackLayout Orientation="Vertical">
-                        <Label Text="{Binding FileName}"/>
-                        <Image Source="{Binding Data}" HeightRequest="50" WidthRequest="50"/>
-                        
-                    </StackLayout>
-                </ViewCell>
-                
-                
+                <StackLayout>
+                    <Image Source="{Binding Data}" HeightRequest="75" WidthRequest="75" Aspect="AspectFill" Margin="1"/>
+                </StackLayout>
             </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+        </flv:FlowListView.FlowColumnTemplate>
+    </flv:FlowListView>
 
 </ContentPage>
