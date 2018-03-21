@@ -13,7 +13,7 @@ namespace XMedia.Model
 
         public ImageSource Data { get; set; }
 
-        public string DateAdded { get; set; }
+        public DateTime DateAdded { get; set; }
 
         public string MediaType { get; set; }
 

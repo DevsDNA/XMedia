@@ -47,7 +47,7 @@ namespace XMedia.Droid.Services
                     {
                         Id = cursor.GetString(0),
                         Data = data,
-                        DateAdded = cursor.GetString(2),
+                        DateAdded = ToDateTime(cursor.GetLong(2)),
                         MediaType = cursor.GetString(3),
                         MimeType = cursor.GetString(4),
                         FileName = cursor.GetString(5)
@@ -56,6 +56,12 @@ namespace XMedia.Droid.Services
             }
 
             return mediaFiles.Where(x => !string.IsNullOrWhiteSpace(x.MimeType)).Where(x => x.MimeType.Contains("image/jpeg") || x.MimeType.Contains("image/png"));
+        }
+
+        //Check out https://developer.android.com/reference/android/provider/MediaStore.MediaColumns.html#DATE_ADDED
+        private DateTime ToDateTime(long seconds)
+        {
+            return new DateTime(1970, 1, 1).AddSeconds(seconds);
         }
 
         private ImageSource GetFile(string path)
