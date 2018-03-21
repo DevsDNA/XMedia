@@ -20,7 +20,8 @@
                 <ViewCell>
                     <StackLayout Orientation="Vertical">
                         <Label Text="{Binding FileName}"/>
-                        <Image Source="{Binding Data, Converter={StaticResource ByteImageConverter}}" HeightRequest="50" WidthRequest="50"/>
+                        <Image Source="{Binding Data}" HeightRequest="50" WidthRequest="50"/>
+                        
                     </StackLayout>
                 </ViewCell>
                 

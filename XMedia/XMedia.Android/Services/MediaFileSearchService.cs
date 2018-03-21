@@ -58,13 +58,13 @@ namespace XMedia.Droid.Services
             return mediaFiles.Where(x => !string.IsNullOrWhiteSpace(x.MimeType)).Where(x => x.MimeType.Contains("image/jpeg") || x.MimeType.Contains("image/png"));
         }
 
-        private byte[] GetFile(string path)
+        private ImageSource GetFile(string path)
         {
             try
             {
-                return File.ReadAllBytes(path);
+                return ImageSource.FromStream(() => new MemoryStream(File.ReadAllBytes(path)));                
             }
-            catch(Exception e)
+            catch
             {
                 return null;
             }
