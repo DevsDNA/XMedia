@@ -77,8 +77,7 @@ namespace XMedia.Droid.Services
                         return new MemoryStream(bytes);
                     }
                     else
-                    {
-                        string a = string.Empty;
+                    {                        
                         return null;
                     }
                     
