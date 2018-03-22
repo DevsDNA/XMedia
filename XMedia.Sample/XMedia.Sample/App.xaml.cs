@@ -1,16 +1,19 @@
-﻿using DLToolkit.Forms.Controls;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 using Xamarin.Forms;
 
-namespace XMedia
+namespace XMedia.Sample
 {
-    public partial class App : Application
+	public partial class App : Application
 	{
 		public App ()
 		{
 			InitializeComponent();
-			
-            FlowListView.Init();
+
+			MainPage = new NavigationPage(new MainPage());
 		}
 
 		protected override void OnStart ()

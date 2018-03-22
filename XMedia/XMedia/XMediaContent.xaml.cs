@@ -9,7 +9,7 @@ using XMedia.Services;
 
 namespace XMedia
 {
-    public partial class MainPage : ContentPage
+    public partial class XMediaContent : ContentView
 	{
         private ObservableCollection<Grouping<DateTime, MediaFileSelector>> mediaFiles;        
 
@@ -37,21 +37,47 @@ namespace XMedia
             set => selectedItemText = value;
         }
 
-        public Color BarColor { get; set; }
-        
-        
+        private static readonly BindableProperty BarColorProperty =
+            BindableProperty.Create(
+                nameof(BarColor),
+                typeof(Color),
+                typeof(XMediaContent),
+                Color.Blue);
+
+        public Color BarColor
+        {
+            get => (Color)GetValue(BarColorProperty);
+            set => SetValue(BarColorProperty, value);
+        }
+
+        public static readonly BindableProperty ImagesCompleteSelectionCommandProperty =
+            BindableProperty.Create(
+                nameof(ImagesCompleteSelectionCommand),
+                typeof(ICommand),
+                typeof(XMediaContent),
+                default(ICommand));
+
+        public ICommand ImagesCompleteSelectionCommand
+        {
+            get => (ICommand)GetValue(ImagesCompleteSelectionCommandProperty);
+            set => SetValue(ImagesCompleteSelectionCommandProperty, value);
+        }
+                
         public string SelectedItems
         {
             get => $"{imagesSelected.Count} {SelectedItemText}";
         }
 
-		public MainPage()
+		public XMediaContent()
 		{
 			InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
             imagesSelected = new List<MediaFileSelector>();
             BarColor = Color.Blue;
             BindingContext = this;            
 		}
+
+
         
         public ICommand ItemTappedCommand
         {
@@ -77,16 +103,27 @@ namespace XMedia
             }
         }
 
-        protected override void OnAppearing()
+        public ICommand DoneCommand
         {
-            base.OnAppearing();
+            get
+            {
+                return new Command(() =>
+                {
+                    ImagesCompleteSelectionCommand?.Execute(imagesSelected.Select(x => x.Media).ToList());
+                });
+            }
+        }
+
+        protected override void OnChildAdded(Element child)
+        {
+            base.OnChildAdded(child);
 
             var mediaFiles = DependencyService.Get<IMediaFileSearchService>().GetMediaFiles().Select(x => new MediaFileSelector(x));
-            
+
             MediaFiles = new ObservableCollection<Grouping<DateTime, MediaFileSelector>>(mediaFiles.GroupBy(x => x.Media.DateAdded)
                                                     .Select(x => new Grouping<DateTime, MediaFileSelector>(x.Key, x)));
-                                                                                                                     
-            OnPropertyChanged(nameof(MediaFiles));            
-        }                
+
+            OnPropertyChanged(nameof(MediaFiles));
+        }        
     }
 }

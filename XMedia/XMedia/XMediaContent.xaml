@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:XMedia"
              xmlns:converter="clr-namespace:XMedia.Converter" 
              xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"           
              xmlns:control="clr-namespace:XMedia.Control"
-             x:Class="XMedia.MainPage">
+             x:Class="XMedia.XMediaContent">
 
-    <ContentPage.Resources>
+    <ContentView.Resources>
         <ResourceDictionary>
             <converter:DateTimeLiteralValueConverter x:Key="DateTimeLiteral"/>
         </ResourceDictionary>
-    </ContentPage.Resources>
+    </ContentView.Resources>
 
 
     <Grid>
@@ -24,7 +24,11 @@
             <Label Text="{Binding SelectedItems}" TextColor="White" HorizontalOptions="Start" Margin="8,0,0,0"
                    VerticalOptions="Center"/>
 
-            <Label Text="Done" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,16,0" TextColor="White"/>
+            <Label Text="Done" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,16,0" TextColor="White">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding DoneCommand}"/>
+                </Label.GestureRecognizers>
+            </Label>
         </Grid>
 
         <flv:FlowListView x:Name="FlowListView"
@@ -52,4 +56,4 @@
                
     
 
-</ContentPage>
+</ContentView>

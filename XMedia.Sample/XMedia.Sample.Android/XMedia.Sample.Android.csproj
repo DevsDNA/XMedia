@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{587F8363-01FF-40D8-8451-D33A38C8917A}</ProjectGuid>
+    <ProjectGuid>{21CC917B-F983-47D5-9388-18BE386A7115}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>XMedia.Droid</RootNamespace>
-    <AssemblyName>XMedia.Android</AssemblyName>
+    <RootNamespace>XMedia.Sample.Droid</RootNamespace>
+    <AssemblyName>XMedia.Sample.Android</AssemblyName>
     <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
@@ -58,7 +58,6 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\MediaFileSearchService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -81,11 +80,14 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\XMedia\XMedia.csproj">
-      <Project>{0cb961fd-0abb-4f0b-b773-db4fb0aaabab}</Project>
-      <Name>XMedia</Name>
+    <ProjectReference Include="..\..\XMedia\XMedia.Android\XMedia.Android.csproj">
+      <Project>{587f8363-01ff-40d8-8451-d33a38c8917a}</Project>
+      <Name>XMedia.Android</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XMedia.Sample\XMedia.Sample.csproj">
+      <Project>{1CA83263-62B6-4332-8F8A-88DDA90F0743}</Project>
+      <Name>XMedia.Sample</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

@@ -5,12 +5,12 @@
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{AD2FF458-9068-43F7-A1F7-0246CF526F46}</ProjectGuid>
+    <ProjectGuid>{6996CFA5-7A90-49FD-BED9-9977832B1C0E}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
-    <RootNamespace>XMedia.iOS</RootNamespace>
+    <RootNamespace>XMedia.Sample.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>XMedia.iOS</AssemblyName>
+    <AssemblyName>XMedia.Sample.iOS</AssemblyName>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
@@ -90,7 +90,6 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="Services\MediaFileSearchService.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -124,9 +123,15 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\XMedia\XMedia.csproj">
-      <Project>{19DD0EE8-19F8-4A3B-9906-E71073BE7B37}</Project>
-      <Name>XMedia</Name>
+    <ProjectReference Include="..\..\XMedia\XMedia.iOS\XMedia.iOS.csproj">
+      <Project>{ad2ff458-9068-43f7-a1f7-0246cf526f46}</Project>
+      <Name>XMedia.iOS</Name>
+      <IsAppExtension>false</IsAppExtension>
+      <IsWatchApp>false</IsWatchApp>
+    </ProjectReference>
+    <ProjectReference Include="..\XMedia.Sample\XMedia.Sample.csproj">
+      <Project>{1CA83263-62B6-4332-8F8A-88DDA90F0743}</Project>
+      <Name>XMedia.Sample</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

@@ -5,21 +5,25 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DLToolkit.Forms.Controls.FlowListView" Version="2.0.10" />
-    <PackageReference Include="LiveXAML" Version="2.1.22" />
     <PackageReference Include="Xamarin.Forms" Version="2.5.0.122203" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\XMedia\XMedia\XMedia.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="App.xaml.cs">
       <DependentUpon>*.xaml</DependentUpon>
     </Compile>
-    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="XMediaContent.xaml.cs">
-      <DependentUpon>XMediaContent.xaml</DependentUpon>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="MainPage.xaml.cs">
+      <DependentUpon>*.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
+    <EmbeddedResource Update="MediaContentView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
