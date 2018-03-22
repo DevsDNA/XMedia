@@ -12,28 +12,44 @@
             <converter:DateTimeLiteralValueConverter x:Key="DateTimeLiteral"/>
         </ResourceDictionary>
     </ContentPage.Resources>
-       
-    
-    
-    <flv:FlowListView x:Name="FlowListView"
-        FlowColumnCount="3" RowHeight="100"
-        FlowItemsSource="{Binding MediaFiles}"
-        HasUnevenRows="False"                   
-        IsGroupingEnabled="True"
-        FlowColumnExpand="None"
-        SeparatorVisibility="None"                      
-        FlowItemTappedCommand="{Binding ItemTappedCommand}"                                            
-        FlowGroupDisplayBinding="{Binding Key , Converter={StaticResource DateTimeLiteral}}">
-        
-        <flv:FlowListView.FlowColumnTemplate>
-            <DataTemplate>
-                <Grid>
-                    <Image Source="{Binding Media.Data}" HeightRequest="100" WidthRequest="100" Aspect="AspectFill" Margin="1"/>
-                    <control:CheckBox CheckedValue="{Binding Selected}" Margin="0,0,8,8" HorizontalOptions="End"/>
 
-                </Grid>
-            </DataTemplate>
-        </flv:FlowListView.FlowColumnTemplate>
-    </flv:FlowListView>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" BackgroundColor="{Binding BarColor}">
+            <Label Text="{Binding SelectedItems}" TextColor="White" HorizontalOptions="Start" Margin="8,0,0,0"
+                   VerticalOptions="Center"/>
+
+            <Label Text="Done" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,16,0" TextColor="White"/>
+        </Grid>
+
+        <flv:FlowListView x:Name="FlowListView"
+                          Grid.Row="1"
+                          FlowColumnCount="3" RowHeight="100"
+                          FlowItemsSource="{Binding MediaFiles}"
+                          HasUnevenRows="False"                   
+                          IsGroupingEnabled="True"
+                          FlowColumnExpand="None"
+                          SeparatorVisibility="None"                      
+                          FlowItemTappedCommand="{Binding ItemTappedCommand}"                                            
+                          FlowGroupDisplayBinding="{Binding Key , Converter={StaticResource DateTimeLiteral}}">
+
+            <flv:FlowListView.FlowColumnTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Image Source="{Binding Media.Data}" HeightRequest="100" WidthRequest="100" Aspect="AspectFill" Margin="1"/>
+                        <control:CheckBox CheckedValue="{Binding Selected}" Margin="0,0,8,8" HorizontalOptions="End"/>
+
+                    </Grid>
+                </DataTemplate>
+            </flv:FlowListView.FlowColumnTemplate>
+        </flv:FlowListView>
+    </Grid>
+               
+    
 
 </ContentPage>

@@ -19,9 +19,37 @@ namespace XMedia
             set => mediaFiles = value;
         }
 
+        private List<MediaFileSelector> imagesSelected;
+
+        private string selectedItemText;
+
+        public string SelectedItemText
+        {
+            get
+            {
+                if(string.IsNullOrEmpty(selectedItemText))
+                {
+                    SelectedItemText = "Selected item(s)";
+                }
+
+                return selectedItemText;
+            }
+            set => selectedItemText = value;
+        }
+
+        public Color BarColor { get; set; }
+        
+        
+        public string SelectedItems
+        {
+            get => $"{imagesSelected.Count} {SelectedItemText}";
+        }
+
 		public MainPage()
 		{
 			InitializeComponent();
+            imagesSelected = new List<MediaFileSelector>();
+            BarColor = Color.Blue;
             BindingContext = this;            
 		}
         
@@ -34,6 +62,17 @@ namespace XMedia
                     var mediaFileSelector = obj as MediaFileSelector;
 
                     mediaFileSelector.Selected = !mediaFileSelector.Selected;
+
+                    if(mediaFileSelector.Selected)
+                    {
+                        imagesSelected.Add(mediaFileSelector);
+                    }
+                    else
+                    {
+                        imagesSelected.Remove(mediaFileSelector);
+                    }
+
+                    OnPropertyChanged(nameof(SelectedItems));
                 });
             }
         }
