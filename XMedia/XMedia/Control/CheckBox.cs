@@ -2,7 +2,7 @@
 
 namespace XMedia.Control
 {
-    public class CheckBox : StackLayout
+    internal class CheckBox : StackLayout
     {
         private Label labelChecked = new Label() { Text = "\u2610", FontSize = 20 };
         private Label labelTitle = new Label();
