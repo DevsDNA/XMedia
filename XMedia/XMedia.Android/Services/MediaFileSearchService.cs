@@ -63,23 +63,19 @@ namespace XMedia.Droid.Services
         
         
 
-        private ImageSource GetFile(string path)
+        private MemoryStream GetFile(string path)
         {
             try
             {
-                return ImageSource.FromStream(() =>
+                var bytes = File.ReadAllBytes(path);
+                if (bytes.Length > 0)
                 {
-                    var bytes = File.ReadAllBytes(path);
-                    if(bytes.Length > 0)
-                    {
-                        return new MemoryStream(bytes);
-                    }
-                    else
-                    {                        
-                        return null;
-                    }
-                    
-                });
+                    return new MemoryStream(bytes);
+                }
+                else
+                {
+                    return null;
+                }
             }
             catch
             {

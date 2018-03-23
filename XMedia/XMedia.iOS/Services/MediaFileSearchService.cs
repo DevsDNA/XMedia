@@ -46,7 +46,7 @@ namespace XMedia.iOS.Services
                      {
                          images.Add(new MediaFile()
                          {
-                             Data = ImageSource.FromStream(() => new MemoryStream(rawBytes)),                             
+                             Data = new MemoryStream(rawBytes),                             
                              DateAdded = asset.CreationDate.ToDateTime().ToShortDate(),
                              MediaType = asset.MediaType.ToString()
 

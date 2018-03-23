@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Xamarin.Forms;
 
 namespace XMedia.Model
@@ -7,7 +8,10 @@ namespace XMedia.Model
     {
         public string Id { get; set; }
         
-        public ImageSource Data { get; set; }
+        public ImageSource Source
+        {
+            get => ImageSource.FromStream(() => Data);
+        }
 
         public DateTime DateAdded { get; set; }
 
@@ -16,5 +20,9 @@ namespace XMedia.Model
         public string MimeType { get; set; }
 
         public string FileName { get; set; }
+
+        public MemoryStream Data { get; set; }
+
+        
     }
 }
