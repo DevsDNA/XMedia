@@ -116,11 +116,13 @@ namespace XMedia
             }
         }
 
-        protected override void OnChildAdded(Element child)
+        protected override async void OnChildAdded(Element child)
         {
             base.OnChildAdded(child);
 
-            var mediaFiles = DependencyService.Get<IMediaFileSearchService>().GetMediaFiles().Select(x => new MediaFileSelector(x));
+            var mediaFileSearchService = DependencyService.Get<IMediaFileSearchService>();
+
+            var mediaFiles = (await mediaFileSearchService.GetMediaFiles()).Select(x => new MediaFileSelector(x));
 
             MediaFiles = new ObservableCollection<Grouping<DateTime, MediaFileSelector>>(mediaFiles.GroupBy(x => x.Media.DateAdded)
                                                     .Select(x => new Grouping<DateTime, MediaFileSelector>(x.Key, x)));
