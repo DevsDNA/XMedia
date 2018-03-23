@@ -4,7 +4,7 @@ using Xamarin.Forms;
 
 namespace XMedia.Model
 {
-    public class MediaFile
+    public class XMediaFile
     {
         public string Id { get; set; }
         

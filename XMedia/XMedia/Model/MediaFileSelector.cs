@@ -4,9 +4,9 @@ namespace XMedia.Model
 {
     public class MediaFileSelector : BindableObject
     {
-        public MediaFile Media { get; private set; }
+        public XMediaFile Media { get; private set; }
 
-        public MediaFileSelector(MediaFile mediaFile)
+        public MediaFileSelector(XMediaFile mediaFile)
         {
             Media = mediaFile;
         }

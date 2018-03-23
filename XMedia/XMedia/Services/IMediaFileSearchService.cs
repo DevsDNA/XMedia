@@ -5,6 +5,6 @@ namespace XMedia.Services
 {
     public interface IMediaFileSearchService
     {
-        IEnumerable<MediaFile> GetMediaFiles();
+        IEnumerable<XMediaFile> GetMediaFiles();
     }
 }

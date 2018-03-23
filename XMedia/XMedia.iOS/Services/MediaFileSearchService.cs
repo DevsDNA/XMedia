@@ -15,9 +15,9 @@ namespace XMedia.iOS.Services
 {
     public class MediaFileSearchService : IMediaFileSearchService
     {
-        public IEnumerable<MediaFile> GetMediaFiles()
+        public IEnumerable<XMediaFile> GetMediaFiles()
         {
-            var images = new List<MediaFile>();
+            var images = new List<XMediaFile>();
             PHImageManager imageManager = PHImageManager.DefaultManager;
 
             var requestOptions = new PHImageRequestOptions()
@@ -44,7 +44,7 @@ namespace XMedia.iOS.Services
 
                      if (rawBytes != null)
                      {
-                         images.Add(new MediaFile()
+                         images.Add(new XMediaFile()
                          {
                              Data = new MemoryStream(rawBytes),                             
                              DateAdded = asset.CreationDate.ToDateTime().ToShortDate(),

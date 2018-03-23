@@ -13,9 +13,9 @@ namespace XMedia.Droid.Services
 {
     public class MediaFileSearchService : IMediaFileSearchService
     {
-        public IEnumerable<MediaFile> GetMediaFiles()
+        public IEnumerable<XMediaFile> GetMediaFiles()
         {
-            var mediaFiles = new List<MediaFile>();
+            var mediaFiles = new List<XMediaFile>();
 
             string[] projection =
             {
@@ -44,7 +44,7 @@ namespace XMedia.Droid.Services
 
                 if(data != null)
                 {
-                    mediaFiles.Add(new MediaFile()
+                    mediaFiles.Add(new XMediaFile()
                     {
                         Id = cursor.GetString(0),
                         Data = data,
