@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using CoreGraphics;
 using Foundation;
 using Photos;
-using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 using XMedia.Model;
@@ -33,10 +30,7 @@ namespace XMedia.iOS.Services
             for(int i = 0; i < results.Count; i ++)
             {
                 var asset = results.ObjectAt(i) as PHAsset;
-
-                //There this second option
-                //imageManager.RequestImageData
-
+                
                 imageManager.RequestImageForAsset(asset, new CGSize(100, 100), PHImageContentMode.AspectFill, requestOptions, (image, info) =>
                  {
                      byte[] rawBytes = null;
@@ -52,8 +46,7 @@ namespace XMedia.iOS.Services
                      {
                          images.Add(new MediaFile()
                          {
-                             Data = ImageSource.FromStream(() => new MemoryStream(rawBytes)),
-                             //FileName = (info[new NSString("PHImageFileURLKey")] as NSUrl).LastPathComponent,
+                             Data = ImageSource.FromStream(() => new MemoryStream(rawBytes)),                             
                              DateAdded = asset.CreationDate.ToDateTime().ToShortDate(),
                              MediaType = asset.MediaType.ToString()
 
@@ -61,29 +54,7 @@ namespace XMedia.iOS.Services
                      }
                      
                      
-                 });
-
-                
-                
-                /*
-                imageManager.RequestImageData(asset, requestOptions, (data, dataUti, orientation, info) =>
-                {
-                    byte[] rawBytes = new byte[data.Length];
-
-                    System.Runtime.InteropServices.Marshal.Copy(data.Bytes, rawBytes, 0, (int)data.Length);
-
-                    System.Diagnostics.Debug.WriteLine(info);
-                    System.Diagnostics.Debug.WriteLine(dataUti);
-
-                    images.Add(new MediaFile()
-                    {
-                        Data = ImageSource.FromStream(() => new MemoryStream(rawBytes)),
-                        FileName = (info[new NSString("PHImageFileURLKey")] as NSUrl).LastPathComponent,
-                        DateAdded = asset.CreationDate.ToDateTime(),
-                        MediaType = asset.MediaType.ToString()
-                    });
-                });                
-                */
+                 });                
             }
 
             return images;
