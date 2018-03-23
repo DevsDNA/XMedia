@@ -12,7 +12,7 @@ namespace XMedia.Model
         
         public ImageSource Source
         {
-            get => ImageSource.FromStream(() => Data);
+            get => ImageSource.FromStream(() => new MemoryStream(Data));
         }
 
         public DateTime DateAdded { get; set; }
@@ -23,7 +23,7 @@ namespace XMedia.Model
 
         public string FileName { get; set; }
 
-        public MemoryStream Data { get; set; }
+        public byte[] Data { get; set; }
 
         
     }
