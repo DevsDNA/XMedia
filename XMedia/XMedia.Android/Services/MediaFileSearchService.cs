@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
-using Android.Provider;
+﻿using Android.Provider;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using Xamarin.Forms;
 using XMedia.Model;
-using XMedia.Utils;
 using XMedia.Services;
-using System.Linq;
-using System.IO;
-using System;
+using XMedia.Utils;
 
 [assembly: Xamarin.Forms.Dependency(typeof(XMedia.Droid.Services.MediaFileSearchService))]
 namespace XMedia.Droid.Services

@@ -1,10 +1,12 @@
-﻿using System;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace XMedia.Control
 {
     public class CheckBox : StackLayout
     {
+        private Label labelChecked = new Label() { Text = "\u2610", FontSize = 20 };
+        private Label labelTitle = new Label();
+
         public static readonly BindableProperty CheckedValueProperty =
             BindableProperty.Create(
                 nameof(CheckedValue),
@@ -26,10 +28,7 @@ namespace XMedia.Control
                 SetValue(CheckedValueProperty, value);
             }
         }
-        
-        private Label labelChecked = new Label() { Text = "\u2610", FontSize = 20};
-        private Label labelTitle = new Label();
-
+                
         public CheckBox()
         {
             Padding = new Thickness(0);

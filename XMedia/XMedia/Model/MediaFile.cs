@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Xamarin.Forms;
 
 namespace XMedia.Model
@@ -8,9 +6,7 @@ namespace XMedia.Model
     public class MediaFile
     {
         public string Id { get; set; }
-
-        //public byte[] Data { get; set; }
-
+        
         public ImageSource Data { get; set; }
 
         public DateTime DateAdded { get; set; }

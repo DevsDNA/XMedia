@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using CoreGraphics;
+﻿using CoreGraphics;
 using Foundation;
 using Photos;
+using System;
+using System.Collections.Generic;
+using System.IO;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 using XMedia.Model;
