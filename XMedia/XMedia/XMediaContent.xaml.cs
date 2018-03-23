@@ -4,11 +4,13 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 using XMedia.Model;
 using XMedia.Services;
 
 namespace XMedia
 {
+    [Preserve(AllMembers = true)]
     public partial class XMediaContent : ContentView
 	{
         

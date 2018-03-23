@@ -1,8 +1,10 @@
 ﻿using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
 namespace XMedia.Control
 {
-    internal class CheckBox : StackLayout
+    [Preserve(AllMembers = true)]
+    public class CheckBox : StackLayout
     {
         private Label labelChecked = new Label() { Text = "\u2610", FontSize = 20 };
         private Label labelTitle = new Label();

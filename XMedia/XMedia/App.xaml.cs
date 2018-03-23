@@ -8,9 +8,7 @@ namespace XMedia
 	{
 		public App ()
 		{
-			InitializeComponent();
-			
-            FlowListView.Init();
+			InitializeComponent();			            
 		}
 
 		protected override void OnStart ()

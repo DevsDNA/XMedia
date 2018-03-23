@@ -45,7 +45,7 @@
             <flv:FlowListView.FlowColumnTemplate>
                 <DataTemplate>
                     <Grid>
-                        <Image Source="{Binding Media.Data}" HeightRequest="100" WidthRequest="100" Aspect="AspectFill" Margin="1"/>
+                        <Image Source="{Binding Media.Source}" HeightRequest="100" WidthRequest="100" Aspect="AspectFill" Margin="1"/>
                         <control:CheckBox CheckedValue="{Binding Selected}" Margin="0,0,8,8" HorizontalOptions="End"/>
 
                     </Grid>

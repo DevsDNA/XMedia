@@ -1,9 +1,11 @@
 ﻿using System;
 using System.IO;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
 namespace XMedia.Model
 {
+    [Preserve(AllMembers = true)]
     public class XMediaFile
     {
         public string Id { get; set; }

@@ -11,7 +11,7 @@ namespace XMedia.Samples
         {
             get
             {
-                return new Command<List<MediaFile>>((mediaFiles) =>
+                return new Command<List<XMediaFile>>((mediaFiles) =>
                 {
                     //Do things with MediaFiles.
                 });

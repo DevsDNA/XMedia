@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 using XMedia.Model;
 using XMedia.Services;
 using XMedia.Utils;
@@ -11,8 +12,14 @@ using XMedia.Utils;
 [assembly: Xamarin.Forms.Dependency(typeof(XMedia.Droid.Services.MediaFileSearchService))]
 namespace XMedia.Droid.Services
 {
+    [Preserve(AllMembers = true)]
     public class MediaFileSearchService : IMediaFileSearchService
     {
+        public MediaFileSearchService()
+        {
+
+        }
+
         public IEnumerable<XMediaFile> GetMediaFiles()
         {
             var mediaFiles = new List<XMediaFile>();

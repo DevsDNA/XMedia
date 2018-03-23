@@ -4,7 +4,6 @@ using Photos;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 using XMedia.Model;
 using XMedia.Services;
@@ -13,8 +12,14 @@ using XMedia.Utils;
 [assembly: Xamarin.Forms.Dependency(typeof(XMedia.iOS.Services.MediaFileSearchService))]
 namespace XMedia.iOS.Services
 {
+    [Preserve(AllMembers = true)]
     public class MediaFileSearchService : IMediaFileSearchService
     {
+        public MediaFileSearchService()
+        {
+            
+        }
+
         public IEnumerable<XMediaFile> GetMediaFiles()
         {
             var images = new List<XMediaFile>();
