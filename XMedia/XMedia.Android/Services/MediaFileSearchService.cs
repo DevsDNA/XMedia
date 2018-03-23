@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using XMedia.Model;
@@ -20,7 +21,7 @@ namespace XMedia.Droid.Services
 
         }
 
-        public IEnumerable<XMediaFile> GetMediaFiles()
+        public async Task<IEnumerable<XMediaFile>> GetMediaFiles()
         {
             var mediaFiles = new List<XMediaFile>();
 
@@ -35,12 +36,10 @@ namespace XMedia.Droid.Services
             };
 
             
-
             string selection = $"{MediaStore.Files.FileColumns.MediaType} = {Android.Provider.MediaType.Image} OR {MediaStore.Files.FileColumns.MediaType} = {Android.Provider.MediaType.Video}";
 
             var queryUri = MediaStore.Files.GetContentUri("external");
-
-            //var cursor = Forms.Context.ContentResolver.Query(queryUri, projection, selection, null, $"{MediaStore.Files.FileColumns.DateAdded} DESC");
+            
             var cursor = Forms.Context.ContentResolver.Query(queryUri, projection, string.Empty, null, $"{MediaStore.Files.FileColumns.DateAdded} DESC");
 
             var columnNames = cursor.GetColumnNames();
@@ -70,14 +69,14 @@ namespace XMedia.Droid.Services
         
         
 
-        private MemoryStream GetFile(string path)
+        private byte[] GetFile(string path)
         {
             try
             {
                 var bytes = File.ReadAllBytes(path);
                 if (bytes.Length > 0)
                 {
-                    return new MemoryStream(bytes);
+                    return bytes;
                 }
                 else
                 {

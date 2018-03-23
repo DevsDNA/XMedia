@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using XMedia.Model;
 
 namespace XMedia.Services
 {
     public interface IMediaFileSearchService
     {
-        IEnumerable<XMediaFile> GetMediaFiles();
+        Task<IEnumerable<XMediaFile>> GetMediaFiles();
     }
 }
