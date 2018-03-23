@@ -11,9 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="App.xaml.cs">
-      <DependentUpon>*.xaml</DependentUpon>
-    </Compile>
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="XMediaContent.xaml.cs">
       <DependentUpon>XMediaContent.xaml</DependentUpon>
     </Compile>
