@@ -11,6 +11,7 @@ namespace XMedia
 {
     public partial class XMediaContent : ContentView
 	{
+        
         private ObservableCollection<Grouping<DateTime, MediaFileSelector>> mediaFiles;        
 
         public ObservableCollection<Grouping<DateTime, MediaFileSelector>> MediaFiles
@@ -70,8 +71,7 @@ namespace XMedia
 
 		public XMediaContent()
 		{
-			InitializeComponent();
-            NavigationPage.SetHasNavigationBar(this, false);
+			InitializeComponent();            
             imagesSelected = new List<MediaFileSelector>();
             BarColor = Color.Blue;
             BindingContext = this;            

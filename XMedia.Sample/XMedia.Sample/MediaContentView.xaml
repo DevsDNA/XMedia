@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:xmedia="clr-namespace:XMedia;assembly=XMedia"
-             x:Class="XMedia.Sample.MediaContentView">
-    <ContentPage.Content>
-        <xmedia:XMediaContent x:Name="MediaContent" />
-    </ContentPage.Content>
-</ContentPage>
