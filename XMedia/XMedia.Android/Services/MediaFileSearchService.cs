@@ -69,25 +69,27 @@ namespace XMedia.Droid.Services
         
         
 
-        private byte[] GetFile(string path)
+        private Func<byte[]> GetFile(string path)
         {
-            try
+            return new Func<byte[]>(() =>
             {
-                var bytes = File.ReadAllBytes(path);
-                if (bytes.Length > 0)
+                try
                 {
-                    return bytes;
+                    var bytes = File.ReadAllBytes(path);
+                    if (bytes.Length > 0)
+                    {
+                        return bytes;
+                    }
+                    else
+                    {
+                        return null;
+                    }
                 }
-                else
+                catch
                 {
                     return null;
                 }
-            }
-            catch
-            {
-                return null;
-            }
-            
+            });                        
         }
 
     }

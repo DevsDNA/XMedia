@@ -44,25 +44,28 @@ namespace XMedia.iOS.Services
 
                     imageManager.RequestImageForAsset(asset, new CGSize(100, 100), PHImageContentMode.AspectFill, requestOptions, (image, info) =>
                     {
-                        byte[] rawBytes = null;
-                        using (NSData imageData = image.AsJPEG())
-                        {
-                            rawBytes = new Byte[imageData.Length];
-                            System.Runtime.InteropServices.Marshal.Copy(imageData.Bytes, rawBytes, 0, (int)imageData.Length);
-                        }
 
-                        System.Diagnostics.Debug.WriteLine(info);
-
-                        if (rawBytes != null)
+                        var funcBytes = new Func<byte[]>(() =>
                         {
-                            images.Add(new XMediaFile()
+                            byte[] rawBytes = null;
+                            using (NSData imageData = image.AsJPEG())
                             {
-                                Data = rawBytes,
-                                DateAdded = asset.CreationDate.ToDateTime().ToShortDate(),
-                                MediaType = asset.MediaType.ToString()
+                                rawBytes = new Byte[imageData.Length];
+                                System.Runtime.InteropServices.Marshal.Copy(imageData.Bytes, rawBytes, 0, (int)imageData.Length);                                
+                            }
 
-                            });
-                        }
+                            return rawBytes;                            
+                        });
+
+
+                        images.Add(new XMediaFile()
+                        {
+                            Data = funcBytes,
+                            DateAdded = asset.CreationDate.ToDateTime().ToShortDate(),
+                            MediaType = asset.MediaType.ToString()
+
+                        });
+
 
 
                     });
