@@ -123,8 +123,10 @@ namespace XMedia
             var mediaFileSearchService = DependencyService.Get<IMediaFileSearchService>();
 
             var mediaFiles = (await mediaFileSearchService.GetMediaFiles()).Select(x => new MediaFileSelector(x));
-
-            MediaFiles = new ObservableCollection<Grouping<DateTime, MediaFileSelector>>(mediaFiles.GroupBy(x => x.Media.DateAdded)
+           
+            MediaFiles = new ObservableCollection<Grouping<DateTime, MediaFileSelector>>(mediaFiles
+                                                    .OrderByDescending(x => x.Media.DateAdded)
+                                                    .GroupBy(x => x.Media.DateAdded)
                                                     .Select(x => new Grouping<DateTime, MediaFileSelector>(x.Key, x)));
 
             OnPropertyChanged(nameof(MediaFiles));
