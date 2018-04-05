@@ -1,24 +1,23 @@
-﻿using CoreGraphics;
-using Foundation;
-using Photos;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Threading.Tasks;
-using Xamarin.Forms.Platform.iOS;
-using XMedia.Model;
-using XMedia.Services;
-using XMedia.Utils;
-
-[assembly: Xamarin.Forms.Dependency(typeof(XMedia.iOS.Services.MediaFileSearchService))]
+﻿[assembly: Xamarin.Forms.Dependency(typeof(XMedia.iOS.Services.MediaFileSearchService))]
 namespace XMedia.iOS.Services
 {
+    using CoreGraphics;
+    using Foundation;
+    using Photos;
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using Xamarin.Forms.Platform.iOS;
+    using XMedia.Model;
+    using XMedia.Services;
+    using XMedia.Utils;
+
     [Preserve(AllMembers = true)]
     public class MediaFileSearchService : IMediaFileSearchService
     {
         public MediaFileSearchService()
         {
-            
+            FFImageLoading.Forms.Touch.CachedImageRenderer.Init();
         }
 
         public async Task<IEnumerable<XMediaFile>> GetMediaFiles()

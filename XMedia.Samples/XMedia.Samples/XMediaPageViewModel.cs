@@ -1,21 +1,23 @@
-﻿using System.Collections.Generic;
-using System.Windows.Input;
-using Xamarin.Forms;
-using XMedia.Model;
-
-namespace XMedia.Samples
+﻿namespace XMedia.Samples
 {
-    public class XMediaPageViewModel
+    using ReactiveUI;
+    using System.Collections.ObjectModel;
+    using XMedia.Model;
+
+    public class XMediaPageViewModel : ReactiveObject
     {
-        public ICommand CompleteImagesCommand
+        private ObservableCollection<XMediaFile> selectedItems = new ObservableCollection<XMediaFile>();
+        
+        public XMediaPageViewModel()
         {
-            get
-            {
-                return new Command<List<XMediaFile>>((mediaFiles) =>
-                {
-                    //Do things with MediaFiles.
-                });
-            }
+
         }
+
+        public ObservableCollection<XMediaFile> SelectedItems
+        {
+            get => selectedItems;
+            set => this.RaiseAndSetIfChanged(ref selectedItems, value);
+        }
+
     }
 }

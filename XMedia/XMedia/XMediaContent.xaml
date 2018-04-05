@@ -3,9 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:XMedia"
              xmlns:converter="clr-namespace:XMedia.Converter" 
+             xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"           
              xmlns:control="clr-namespace:XMedia.Control"
-             x:Class="XMedia.XMediaContent">
+             x:Class="XMedia.XMediaContent"
+             x:Name="rootElement">
 
     <ContentView.Resources>
         <ResourceDictionary>
@@ -13,26 +15,9 @@
         </ResourceDictionary>
     </ContentView.Resources>
 
-
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="80"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <Grid Grid.Row="0" BackgroundColor="{Binding BarColor}">
-            <Label Text="{Binding SelectedItems}" TextColor="White" HorizontalOptions="Start" Margin="8,0,0,0"
-                   VerticalOptions="End"/>
-
-            <Label Text="Done" HorizontalOptions="End" VerticalOptions="End" Margin="0,0,16,0" TextColor="White">
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding DoneCommand}"/>
-                </Label.GestureRecognizers>
-            </Label>
-        </Grid>
-
+    <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
         <flv:FlowListView x:Name="FlowListView"
-                          Grid.Row="1"
+                          VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
                           FlowColumnCount="3" RowHeight="100"
                           FlowItemsSource="{Binding MediaFiles}"
                           HasUnevenRows="False"                   
@@ -44,16 +29,20 @@
 
             <flv:FlowListView.FlowColumnTemplate>
                 <DataTemplate>
-                    <Grid>
-                        <Image Source="{Binding Media.Source}" HeightRequest="100" WidthRequest="100" Aspect="AspectFill" Margin="1"/>
-                        <control:CheckBox CheckedValue="{Binding Selected}" Margin="0,0,8,8" HorizontalOptions="End"/>
-
+                    <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                        <BoxView BackgroundColor="{Binding Source={x:Reference rootElement}, Path=SelectedColor}" 
+                                 IsVisible="{Binding Selected}"
+                                 Opacity="1"
+                                 VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+                        <ffimage:CachedImage Source="{Binding Media.Source}" 
+                                             TransparencyEnabled="False"
+                                             FadeAnimationForCachedImages="True" 
+                                             FadeAnimationEnabled="True"
+                                             Aspect="AspectFill" Margin="3"/>
+                        
                     </Grid>
                 </DataTemplate>
             </flv:FlowListView.FlowColumnTemplate>
         </flv:FlowListView>
     </Grid>
-               
-    
-
 </ContentView>

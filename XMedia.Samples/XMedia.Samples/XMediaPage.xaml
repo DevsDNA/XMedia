@@ -1,9 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:xmedia="clr-namespace:XMedia;assembly=XMedia"
-             x:Class="XMedia.Samples.XMediaPage">
+<reactive:ReactiveContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                              xmlns:local="clr-namespace:XMedia.Samples"
+                              xmlns:xmedia="clr-namespace:XMedia;assembly=XMedia"
+                              xmlns:reactive="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
+                              x:TypeArguments="local:XMediaPageViewModel"                 
+                              x:Class="XMedia.Samples.XMediaPage">
     <ContentPage.Content>
-        <xmedia:XMediaContent ImagesCompleteSelectionCommand="{Binding CompleteImagesCommand}"/>
+            <xmedia:XMediaContent x:Name="XMediaControl" FilesSelected="{Binding SelectedItems, Mode=TwoWay}" SelectedColor="BlueViolet" />
     </ContentPage.Content>
-</ContentPage>
+</reactive:ReactiveContentPage>

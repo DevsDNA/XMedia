@@ -1,24 +1,24 @@
-﻿using Android.Provider;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Xamarin.Forms;
-using Xamarin.Forms.Internals;
-using XMedia.Model;
-using XMedia.Services;
-using XMedia.Utils;
-
-[assembly: Xamarin.Forms.Dependency(typeof(XMedia.Droid.Services.MediaFileSearchService))]
+﻿[assembly: Xamarin.Forms.Dependency(typeof(XMedia.Droid.Services.MediaFileSearchService))]
 namespace XMedia.Droid.Services
 {
+    using Android.Provider;
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Xamarin.Forms;
+    using Xamarin.Forms.Internals;
+    using XMedia.Model;
+    using XMedia.Services;
+    using XMedia.Utils;
+
     [Preserve(AllMembers = true)]
     public class MediaFileSearchService : IMediaFileSearchService
     {
         public MediaFileSearchService()
         {
-
+            FFImageLoading.Forms.Droid.CachedImageRenderer.Init(true);
         }
 
         public async Task<IEnumerable<XMediaFile>> GetMediaFiles()
