@@ -1,8 +1,8 @@
-﻿using Xamarin.Forms;
-using Xamarin.Forms.Internals;
-
-namespace XMedia.Model
+﻿namespace XMedia.Model
 {
+    using Xamarin.Forms;
+    using Xamarin.Forms.Internals;
+
     [Preserve(AllMembers = true)]
     public class MediaFileSelector : BindableObject
     {

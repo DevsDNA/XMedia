@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.companyname.XMedia.Samples">
-	<uses-sdk android:minSdkVersion="15" />
+	<uses-sdk android:minSdkVersion="15" android:largeHeap="true"/>
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 	<application android:label="XMedia.Samples.Android"></application>
 </manifest>
