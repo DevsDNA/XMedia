@@ -5,6 +5,7 @@
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.IO;
     using System.Linq;
     using System.Windows.Input;
     using Xamarin.Forms;
@@ -16,7 +17,7 @@
     public partial class XMediaContent : ContentView
 	{
         private ObservableCollection<Grouping<DateTime, MediaFileSelector>> mediaFiles;
-        private List<MediaFileSelector> imagesSelected;
+        private List<MediaFileSelector> imagesSelected;        
 
         public static readonly BindableProperty SelectedColorProperty =
                                                 BindableProperty.Create(
@@ -82,6 +83,11 @@
             }
         }
 
+        public bool MediaLoading
+        {
+            get => !(MediaFiles?.Count > 0);
+        }
+
         protected override async void OnChildAdded(Element child)
         {
             base.OnChildAdded(child);
@@ -93,10 +99,7 @@
                                                     .Select(x => new Grouping<DateTime, MediaFileSelector>(x.Key, x)));
 
             OnPropertyChanged(nameof(MediaFiles));
-        }        
-        
-        
-
-        
+            OnPropertyChanged(nameof(MediaLoading));
+        }                                        
     }
 }

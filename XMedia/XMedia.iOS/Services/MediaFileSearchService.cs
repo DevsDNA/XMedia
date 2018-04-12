@@ -60,6 +60,7 @@ namespace XMedia.iOS.Services
                         images.Add(new XMediaFile()
                         {
                             Data = funcBytes,
+                            ThumbData = funcBytes,
                             DateAdded = asset.CreationDate.ToDateTime().ToShortDate(),
                             MediaType = asset.MediaType.ToString()
 

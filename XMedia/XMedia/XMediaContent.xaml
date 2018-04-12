@@ -47,5 +47,10 @@
                 </DataTemplate>
             </flv:FlowListView.FlowColumnTemplate>
         </flv:FlowListView>
+
+        <Grid x:Name="BusyBox" IsVisible="{Binding MediaLoading}" BackgroundColor="White" Opacity="0.5">
+            <ActivityIndicator HorizontalOptions="Center" VerticalOptions="Center" IsRunning="True"/>
+        </Grid>
+        
     </Grid>
 </ContentView>
