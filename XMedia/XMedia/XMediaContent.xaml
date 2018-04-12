@@ -34,12 +34,15 @@
                                  IsVisible="{Binding Selected}"
                                  Opacity="1"
                                  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
-                        <ffimage:CachedImage Source="{Binding Media.Source}" 
+
+
+                        <ffimage:CachedImage Source="{Binding Media.ThumbSource}" 
                                              TransparencyEnabled="False"
                                              FadeAnimationForCachedImages="True" 
-                                             FadeAnimationEnabled="True"
-                                             Aspect="AspectFill" Margin="3"/>
-                        
+                                             FadeAnimationEnabled="True"                                             
+                                             Aspect="AspectFill" Margin="3"
+                                             LoadingPlaceholder="icon.png"/>
+                                                                                                
                     </Grid>
                 </DataTemplate>
             </flv:FlowListView.FlowColumnTemplate>

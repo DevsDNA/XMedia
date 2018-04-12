@@ -36,12 +36,9 @@ namespace XMedia.Droid.Services
                 MediaStore.Files.FileColumns.MimeType,
                 MediaStore.Files.FileColumns.Title,                
             };
-
-            
-            string selection = $"{MediaStore.Files.FileColumns.MediaType} = {Android.Provider.MediaType.Image} OR {MediaStore.Files.FileColumns.MediaType} = {Android.Provider.MediaType.Video}";
-
+                        
             var queryUri = MediaStore.Files.GetContentUri("external");
-            
+                        
             var cursor = Forms.Context.ContentResolver.Query(queryUri, projection, string.Empty, null, $"{MediaStore.Files.FileColumns.DateAdded} DESC");
 
             var columnNames = cursor.GetColumnNames();
@@ -105,6 +102,7 @@ namespace XMedia.Droid.Services
                     bitmap.Compress(Bitmap.CompressFormat.Png, 0, stream);
                     var rawImage = stream.ToArray();
                     bitmap.Recycle();
+                    bitmap.Dispose();                    
                     return rawImage;
                 }                    
             });            

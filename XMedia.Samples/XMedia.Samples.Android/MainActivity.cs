@@ -1,11 +1,10 @@
-﻿using System;
-
+﻿
 using Android.App;
+using Android.Content;
 using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
+using Android.Runtime;
+using System;
 
 namespace XMedia.Samples.Droid
 {
@@ -22,6 +21,14 @@ namespace XMedia.Samples.Droid
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
         }
+
+        public override void OnTrimMemory([GeneratedEnum] TrimMemory level)
+        {
+            GC.Collect(GC.MaxGeneration, GCCollectionMode.Forced);
+            base.OnTrimMemory(level);
+        }
+
+
     }
 }
 

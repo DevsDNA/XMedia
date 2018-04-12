@@ -15,6 +15,11 @@ namespace XMedia.Model
             get => ImageSource.FromStream(() => new MemoryStream(Data.Invoke()));
         }
 
+        public ImageSource ThumbSource
+        {
+            get => ImageSource.FromStream(() => new MemoryStream(ThumbData.Invoke()));
+        }
+
         public DateTime DateAdded { get; set; }
 
         public string MediaType { get; set; }
@@ -24,6 +29,8 @@ namespace XMedia.Model
         public string FileName { get; set; }
 
         public Func<byte[]> Data { get; set; }
+
+        public Func<byte[]> ThumbData { get; set; }
 
         
     }

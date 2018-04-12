@@ -1,5 +1,7 @@
 ﻿namespace XMedia
 {
+    using DLToolkit.Forms.Controls;
+    using FFImageLoading.Forms;
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
@@ -92,5 +94,9 @@
 
             OnPropertyChanged(nameof(MediaFiles));
         }        
+        
+        
+
+        
     }
 }
