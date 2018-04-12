@@ -1,7 +1,9 @@
 ﻿[assembly: Xamarin.Forms.Dependency(typeof(XMedia.Droid.Services.MediaFileSearchService))]
 namespace XMedia.Droid.Services
 {
-    using Android.Provider;
+    using Android.Graphics;
+    using Android.Media;
+    using Android.Provider;   
     using System;
     using System.Collections.Generic;
     using System.IO;
@@ -32,7 +34,7 @@ namespace XMedia.Droid.Services
                 MediaStore.Files.FileColumns.DateAdded,
                 MediaStore.Files.FileColumns.MediaType,
                 MediaStore.Files.FileColumns.MimeType,
-                MediaStore.Files.FileColumns.Title
+                MediaStore.Files.FileColumns.Title,                
             };
 
             
@@ -46,14 +48,18 @@ namespace XMedia.Droid.Services
 
             while (cursor.MoveToNext())
             {
-                var data = GetFile(cursor.GetString(1));
+                var id = cursor.GetLong(0);
+                var fileName = cursor.GetString(1);
+                var data = GetFile(fileName);
+                var thumbData = GetThumbFile(fileName);                                
 
                 if(data != null)
                 {
                     mediaFiles.Add(new XMediaFile()
                     {
-                        Id = cursor.GetString(0),
+                        Id = id.ToString(),
                         Data = data,
+                        ThumbData = thumbData,
                         //Check out https://developer.android.com/reference/android/provider/MediaStore.MediaColumns.html#DATE_ADDED
                         DateAdded = new DateTime(1970,1,1).AddSeconds(cursor.GetLong(2)).ToShortDate(),
                         MediaType = cursor.GetString(3),
@@ -65,10 +71,7 @@ namespace XMedia.Droid.Services
 
             return mediaFiles.Where(x => !string.IsNullOrWhiteSpace(x.MimeType)).Where(x => x.MimeType.Contains("image/jpeg") || x.MimeType.Contains("image/png"));
         }
-
-        
-        
-
+                
         private Func<byte[]> GetFile(string path)
         {
             return new Func<byte[]>(() =>
@@ -92,5 +95,19 @@ namespace XMedia.Droid.Services
             });                        
         }
 
+        private Func<byte[]> GetThumbFile(string path)
+        {
+            return new Func<byte[]>(() =>
+            {                
+                var bitmap = ThumbnailUtils.ExtractThumbnail(BitmapFactory.DecodeFile(path), 100,100);
+                using (var stream = new MemoryStream())
+                {
+                    bitmap.Compress(Bitmap.CompressFormat.Png, 0, stream);
+                    var rawImage = stream.ToArray();
+                    bitmap.Recycle();
+                    return rawImage;
+                }                    
+            });            
+        }        
     }
 }
