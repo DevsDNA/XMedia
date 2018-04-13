@@ -5,7 +5,7 @@
              xmlns:converter="clr-namespace:XMedia.Converter" 
              xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"           
-             xmlns:control="clr-namespace:XMedia.Control"
+             xmlns:checkbox="clr-namespace:XCheckBox;assembly=XCheckBox"
              x:Class="XMedia.XMediaContent"
              x:Name="rootElement">
 
@@ -30,19 +30,22 @@
             <flv:FlowListView.FlowColumnTemplate>
                 <DataTemplate>
                     <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-                        <BoxView BackgroundColor="{Binding Source={x:Reference rootElement}, Path=SelectedColor}" 
-                                 IsVisible="{Binding Selected}"
-                                 Opacity="1"
-                                 VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
-
-
+                                                
                         <ffimage:CachedImage Source="{Binding Media.ThumbSource}" 
                                              TransparencyEnabled="False"
                                              FadeAnimationForCachedImages="True" 
                                              FadeAnimationEnabled="True"                                             
-                                             Aspect="AspectFill" Margin="3"
+                                             Aspect="AspectFill" 
                                              LoadingPlaceholder="icon.png"/>
-                                                                                                
+
+
+                        <checkbox:XCheckBox HorizontalOptions="End" VerticalOptions="End" Margin="0,0,1,1"
+                                            CheckBoxColor="{Binding Source={x:Reference rootElement}, Path=SelectedColor}"
+                                            CheckBoxValue="{Binding Selected}"/>
+
+
+
+
                     </Grid>
                 </DataTemplate>
             </flv:FlowListView.FlowColumnTemplate>
