@@ -35,13 +35,20 @@
                                              TransparencyEnabled="False"
                                              FadeAnimationForCachedImages="True" 
                                              FadeAnimationEnabled="True"                                             
-                                             Aspect="AspectFill" 
+                                             Aspect="A spectFill" Margin="3"
                                              LoadingPlaceholder="icon.png"/>
 
 
-                        <checkbox:XCheckBox HorizontalOptions="End" VerticalOptions="End" Margin="0,0,1,1"
+                        <checkbox:XCheckBox HorizontalOptions="End" VerticalOptions="End" Margin="0,0,8,8"
                                             CheckBoxColor="{Binding Source={x:Reference rootElement}, Path=SelectedColor}"
-                                            CheckBoxValue="{Binding Selected}"/>
+                                            CheckBoxValue="{Binding Selected}">
+                            <checkbox:XCheckBox.Margin>
+                                <OnPlatform x:TypeArguments="Thickness">
+                                    <On Platform="iOS" Value="0,0,8,8"/>
+                                    <On Platform="Android" Value="0,0,0,0"/>
+                                </OnPlatform>
+                            </checkbox:XCheckBox.Margin>
+                        </checkbox:XCheckBox>
 
 
 
