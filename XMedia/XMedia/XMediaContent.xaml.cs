@@ -100,6 +100,6 @@
 
             OnPropertyChanged(nameof(MediaFiles));
             OnPropertyChanged(nameof(MediaLoading));
-        }                                        
+        }                                                
     }
 }

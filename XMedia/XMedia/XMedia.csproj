@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="DevsDNA.XCheckBox" Version="1.0.3" />
     <PackageReference Include="DLToolkit.Forms.Controls.FlowListView" Version="2.0.10" />
     <PackageReference Include="LiveXAML" Version="2.1.22" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.3.6" />
