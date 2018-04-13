@@ -8,7 +8,7 @@
         public static void Init()
         {
             DependencyService.Register<MediaFileSearchService>();
-            
+            XCheckBox.iOS.CheckBoxRenderer.Init();
         }
     }
 }
