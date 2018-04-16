@@ -1,11 +1,9 @@
 ﻿namespace XMedia
 {
-    using DLToolkit.Forms.Controls;
-    using FFImageLoading.Forms;
+    
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    using System.IO;
     using System.Linq;
     using System.Windows.Input;
     using Xamarin.Forms;
@@ -39,7 +37,7 @@
 
             imagesSelected = new List<MediaFileSelector>();
             SelectedColor = Color.Blue;
-            BindingContext = this;
+            BindingContext = this;            
         }
 
         public ObservableCollection<Grouping<DateTime, MediaFileSelector>> MediaFiles
