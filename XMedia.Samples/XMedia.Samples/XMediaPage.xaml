@@ -7,6 +7,7 @@
                               x:TypeArguments="local:XMediaPageViewModel"                 
                               x:Class="XMedia.Samples.XMediaPage">
     <ContentPage.Content>
-            <xmedia:XMediaContent x:Name="XMediaControl" FilesSelected="{Binding SelectedItems, Mode=TwoWay}" SelectedColor="BlueViolet" />
+            <xmedia:XMediaContent x:Name="XMediaControl" FilesSelected="{Binding SelectedItems, Mode=TwoWay}" SelectedColor="BlueViolet"
+                                  PlaceHolderImage="no_image.png"/>
     </ContentPage.Content>
 </reactive:ReactiveContentPage>

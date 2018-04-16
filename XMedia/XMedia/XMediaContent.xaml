@@ -6,6 +6,8 @@
              xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"           
              xmlns:checkbox="clr-namespace:XCheckBox;assembly=XCheckBox"
+             xmlns:control="clr-namespace:XMedia.Control"
+             xmlns:resource="clr-namespace:XMedia.Utils"
              x:Class="XMedia.XMediaContent"
              x:Name="rootElement">
 
@@ -30,16 +32,16 @@
             <flv:FlowListView.FlowColumnTemplate>
                 <DataTemplate>
                     <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-                                                
+
                         <ffimage:CachedImage Source="{Binding Media.ThumbSource}" 
                                              TransparencyEnabled="False"
                                              FadeAnimationForCachedImages="True" 
                                              FadeAnimationEnabled="True"                                             
-                                             Aspect="A spectFill" Margin="3"
-                                             LoadingPlaceholder="icon.png"/>
+                                             Aspect="AspectFill" Margin="3"                                                
+                                             LoadingPlaceholder="{Binding Source={x:Reference rootElement}, Path=PlaceHolderImage}"/>
+                        
 
-
-                        <checkbox:XCheckBox HorizontalOptions="End" VerticalOptions="End" Margin="0,0,8,8"
+                            <checkbox:XCheckBox HorizontalOptions="End" VerticalOptions="End" Margin="0,0,8,8"
                                             CheckBoxColor="{Binding Source={x:Reference rootElement}, Path=SelectedColor}"
                                             CheckBoxValue="{Binding Selected}">
                             <checkbox:XCheckBox.Margin>

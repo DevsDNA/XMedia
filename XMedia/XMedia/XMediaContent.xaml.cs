@@ -1,11 +1,9 @@
 ﻿namespace XMedia
 {
-    using DLToolkit.Forms.Controls;
-    using FFImageLoading.Forms;
+    
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    using System.IO;
     using System.Linq;
     using System.Windows.Input;
     using Xamarin.Forms;
@@ -33,13 +31,20 @@
                                                 typeof(XMediaContent),
                                                 new ObservableCollection<XMediaFile>(), BindingMode.TwoWay);
 
+        public static readonly BindableProperty PlaceHolderImageProperty =
+                                                BindableProperty.Create(
+                                                nameof(PlaceHolderImage),
+                                                typeof(string),
+                                                typeof(XMediaContent),
+                                                string.Empty);
+
         public XMediaContent()
         {
             InitializeComponent();
 
             imagesSelected = new List<MediaFileSelector>();
             SelectedColor = Color.Blue;
-            BindingContext = this;
+            BindingContext = this;            
         }
 
         public ObservableCollection<Grouping<DateTime, MediaFileSelector>> MediaFiles
@@ -58,6 +63,12 @@
         {
             get => (ObservableCollection<XMediaFile>)GetValue(FilesSelectedProperty);
             set => SetValue(FilesSelectedProperty, value);
+        }
+
+        public string PlaceHolderImage
+        {
+            get => (string)GetValue(PlaceHolderImageProperty);
+            set => SetValue(PlaceHolderImageProperty, value);
         }
 
         public ICommand ItemTappedCommand
