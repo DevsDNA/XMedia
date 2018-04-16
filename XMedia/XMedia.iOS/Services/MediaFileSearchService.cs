@@ -37,6 +37,11 @@ namespace XMedia.iOS.Services
 
                 var results = PrepareResults();
 
+                if (results == null || results.Count == 0)
+                {
+                    return images;
+                }
+
                 for (int i = 0; i < results.Count; i++)
                 {
                     var asset = results.ObjectAt(i) as PHAsset;
