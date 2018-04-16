@@ -5,6 +5,7 @@
              xmlns:converter="clr-namespace:XMedia.Converter" 
              xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"           
+             xmlns:checkbox="clr-namespace:XCheckBox;assembly=XCheckBox"
              xmlns:control="clr-namespace:XMedia.Control"
              xmlns:resource="clr-namespace:XMedia.Utils"
              x:Class="XMedia.XMediaContent"
@@ -31,19 +32,29 @@
             <flv:FlowListView.FlowColumnTemplate>
                 <DataTemplate>
                     <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-                        <BoxView BackgroundColor="{Binding Source={x:Reference rootElement}, Path=SelectedColor}" 
-                                 IsVisible="{Binding Selected}"
-                                 Opacity="1"
-                                 VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
-
 
                         <ffimage:CachedImage Source="{Binding Media.ThumbSource}" 
                                              TransparencyEnabled="False"
                                              FadeAnimationForCachedImages="True" 
                                              FadeAnimationEnabled="True"                                             
-                                             Aspect="AspectFill" Margin="3"
-                                             LoadingPlaceholder="{resource:ImageResource XMedia.no_image.jpg}"/>
-                                                                                                
+                                             Aspect="AspectFill" Margin="3"                                                
+                                             LoadingPlaceholder="{Binding Source={x:Reference rootElement}, Path=PlaceHolderImage}"/>
+                        
+
+                            <checkbox:XCheckBox HorizontalOptions="End" VerticalOptions="End" Margin="0,0,8,8"
+                                            CheckBoxColor="{Binding Source={x:Reference rootElement}, Path=SelectedColor}"
+                                            CheckBoxValue="{Binding Selected}">
+                            <checkbox:XCheckBox.Margin>
+                                <OnPlatform x:TypeArguments="Thickness">
+                                    <On Platform="iOS" Value="0,0,8,8"/>
+                                    <On Platform="Android" Value="0,0,0,0"/>
+                                </OnPlatform>
+                            </checkbox:XCheckBox.Margin>
+                        </checkbox:XCheckBox>
+
+
+
+
                     </Grid>
                 </DataTemplate>
             </flv:FlowListView.FlowColumnTemplate>

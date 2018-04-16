@@ -31,6 +31,13 @@
                                                 typeof(XMediaContent),
                                                 new ObservableCollection<XMediaFile>(), BindingMode.TwoWay);
 
+        public static readonly BindableProperty PlaceHolderImageProperty =
+                                                BindableProperty.Create(
+                                                nameof(PlaceHolderImage),
+                                                typeof(string),
+                                                typeof(XMediaContent),
+                                                string.Empty);
+
         public XMediaContent()
         {
             InitializeComponent();
@@ -56,6 +63,12 @@
         {
             get => (ObservableCollection<XMediaFile>)GetValue(FilesSelectedProperty);
             set => SetValue(FilesSelectedProperty, value);
+        }
+
+        public string PlaceHolderImage
+        {
+            get => (string)GetValue(PlaceHolderImageProperty);
+            set => SetValue(PlaceHolderImageProperty, value);
         }
 
         public ICommand ItemTappedCommand
@@ -98,6 +111,6 @@
 
             OnPropertyChanged(nameof(MediaFiles));
             OnPropertyChanged(nameof(MediaLoading));
-        }                                        
+        }                                                
     }
 }

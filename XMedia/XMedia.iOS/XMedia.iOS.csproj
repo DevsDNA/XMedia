@@ -40,6 +40,9 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="DevsDNA.XCheckBox">
+      <Version>1.0.3</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.FFImageLoading.Forms">
       <Version>2.3.6</Version>
     </PackageReference>
