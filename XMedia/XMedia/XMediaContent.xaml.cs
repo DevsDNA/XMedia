@@ -116,7 +116,7 @@
         {
             base.OnChildAdded(child);
             var mediaFileSearchService = DependencyService.Get<IMediaFileSearchService>();
-            var mediaFiles = (await mediaFileSearchService.GetMediaFiles()).Select(x => new MediaFileSelector(x));
+            var mediaFiles = (await mediaFileSearchService.GetMediaFiles(LimitToImages)).Select(x => new MediaFileSelector(x));
             MediaFiles = new ObservableCollection<Grouping<DateTime, MediaFileSelector>>(mediaFiles
                                                     .OrderByDescending(x => x.Media.DateAdded)
                                                     .GroupBy(x => x.Media.DateAdded)
