@@ -23,7 +23,7 @@ namespace XMedia.Droid.Services
             FFImageLoading.Forms.Droid.CachedImageRenderer.Init(true);
         }
 
-        public async Task<IEnumerable<XMediaFile>> GetMediaFiles()
+        public async Task<IEnumerable<XMediaFile>> GetMediaFiles(int limitImages = 0)
         {
             var mediaFiles = new List<XMediaFile>();
 
@@ -38,8 +38,10 @@ namespace XMedia.Droid.Services
             };
                         
             var queryUri = MediaStore.Files.GetContentUri("external");
+
+            string limit = GetLimit(limitImages);
                         
-            var cursor = Forms.Context.ContentResolver.Query(queryUri, projection, string.Empty, null, $"{MediaStore.Files.FileColumns.DateAdded} DESC");
+            var cursor = Forms.Context.ContentResolver.Query(queryUri, projection, string.Empty, null, $"{MediaStore.Files.FileColumns.DateAdded} DESC {limit}");
 
             var columnNames = cursor.GetColumnNames();
 
@@ -68,7 +70,19 @@ namespace XMedia.Droid.Services
 
             return mediaFiles.Where(x => !string.IsNullOrWhiteSpace(x.MimeType)).Where(x => x.MimeType.Contains("image/jpeg") || x.MimeType.Contains("image/png"));
         }
-                
+
+        private string GetLimit(int limitImages)
+        {
+            string limit = string.Empty;
+
+            if(limitImages > 0)
+            {
+                limit = $"LIMIT {limitImages}";
+            }
+
+            return limit;
+        }
+
         private Func<byte[]> GetFile(string path)
         {
             return new Func<byte[]>(() =>

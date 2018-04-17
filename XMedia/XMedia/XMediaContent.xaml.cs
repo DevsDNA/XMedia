@@ -38,6 +38,13 @@
                                                 typeof(XMediaContent),
                                                 string.Empty);
 
+        public static readonly BindableProperty LimitToImagesProperty =
+                                                BindableProperty.Create(
+                                                nameof(LimitToImages),
+                                                typeof(int),
+                                                typeof(XMediaContent),
+                                                500);
+
         public XMediaContent()
         {
             InitializeComponent();
@@ -69,6 +76,12 @@
         {
             get => (string)GetValue(PlaceHolderImageProperty);
             set => SetValue(PlaceHolderImageProperty, value);
+        }
+
+        public int LimitToImages
+        {
+            get => (int)GetValue(LimitToImagesProperty);
+            set => SetValue(LimitToImagesProperty, value);
         }
 
         public ICommand ItemTappedCommand
