@@ -38,6 +38,13 @@
                                                 typeof(XMediaContent),
                                                 string.Empty);
 
+        public static readonly BindableProperty LimitToImagesProperty =
+                                                BindableProperty.Create(
+                                                nameof(LimitToImages),
+                                                typeof(int),
+                                                typeof(XMediaContent),
+                                                500);
+
         public XMediaContent()
         {
             InitializeComponent();
@@ -69,6 +76,12 @@
         {
             get => (string)GetValue(PlaceHolderImageProperty);
             set => SetValue(PlaceHolderImageProperty, value);
+        }
+
+        public int LimitToImages
+        {
+            get => (int)GetValue(LimitToImagesProperty);
+            set => SetValue(LimitToImagesProperty, value);
         }
 
         public ICommand ItemTappedCommand
@@ -103,7 +116,7 @@
         {
             base.OnChildAdded(child);
             var mediaFileSearchService = DependencyService.Get<IMediaFileSearchService>();
-            var mediaFiles = (await mediaFileSearchService.GetMediaFiles()).Select(x => new MediaFileSelector(x));
+            var mediaFiles = (await mediaFileSearchService.GetMediaFiles(LimitToImages)).Select(x => new MediaFileSelector(x));
             MediaFiles = new ObservableCollection<Grouping<DateTime, MediaFileSelector>>(mediaFiles
                                                     .OrderByDescending(x => x.Media.DateAdded)
                                                     .GroupBy(x => x.Media.DateAdded)

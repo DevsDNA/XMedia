@@ -20,14 +20,13 @@ namespace XMedia.iOS.Services
             FFImageLoading.Forms.Touch.CachedImageRenderer.Init();
         }
 
-        public async Task<IEnumerable<XMediaFile>> GetMediaFiles()
+        public async Task<IEnumerable<XMediaFile>> GetMediaFiles(int limitImages = 0)
         {
             var images = new List<XMediaFile>();
             var permission = await PHPhotoLibrary.RequestAuthorizationAsync();
 
             if(permission == PHAuthorizationStatus.Authorized)
-            {
-                
+            {                
                 PHImageManager imageManager = PHImageManager.DefaultManager;
 
                 var requestOptions = new PHImageRequestOptions()
@@ -42,7 +41,13 @@ namespace XMedia.iOS.Services
                     return images;
                 }
 
-                for (int i = 0; i < results.Count; i++)
+                if(limitImages == 0)
+                {
+                    limitImages = (int)results.Count;
+                }
+
+
+                for (int i = 0; i < limitImages; i++)
                 {
                     var asset = results.ObjectAt(i) as PHAsset;
 

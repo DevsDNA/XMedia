@@ -6,6 +6,6 @@ namespace XMedia.Services
 {
     public interface IMediaFileSearchService
     {
-        Task<IEnumerable<XMediaFile>> GetMediaFiles();
+        Task<IEnumerable<XMediaFile>> GetMediaFiles(int limitImages = 0);
     }
 }
